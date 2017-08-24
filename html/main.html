@@ -7,60 +7,116 @@
     <title>Hello APP</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
 	<style>
-		#con{
-			margin: 10px;
-			font-size: 24px; 
-		}
-		ul{
-			margin-bottom: 10px;
-		}
-		ul li{ 
-			margin: 5px 10px;
-			padding: 5px;
-			color: #000;
-			word-wrap: break-word;
-		}
+	  header {
+	    position: relative;
+      width: 100%;
+      height: 70px;
+      background-color: #F7F7F7;
+      border-bottom: 1px solid #D8D8D8;
+	  }
+    header h1{
+      position: relative;
+      height: 50px;
+      top: 40%;
+      line-height: 50px;
+      font-size: 20px;
+      color: transparent;
+      background-color : black;
+      text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
+      -webkit-background-clip : text;
+      text-align: center;
+    }
+    header .right{
+      position: absolute;
+      top:50%;
+      right:10px;
+    }
+    footer {
+      position: fixed;
+      width: 100%;
+      height: 60px;
+      background-color: #F7F7F7;
+      border-top:1px solid #D8D8D8;
+      bottom: 0px;
+    }
+    footer .left{
+      position: absolute;
+      left: 20px;
+      top:15%;
+    }
+    footer .center{
+      text-align: center;
+      position: relative;
+      top:15%;
+    }
+    footer .right{
+      position: absolute;
+      right: 20px;
+      top:15%;
+    }
 	</style>
 </head>
 <body>
-    <label id="con">Hello APP</label>
-	<div id='sys-info'></div>
+    <header id="head">
+      <h1>Hour Calculator</h1>
+      <div class="right" tapmode onclick="fnOpenPersonalWin()">
+        <img src="../image/personal.png" width="30" height="30">
+      </div>
+    </header>
+    <footer>
+      <div class="left" tapmode onclick="fnOpenMoneyWin()">
+        <img src="../image/pig.png" width="40" height="40" >
+      </div>
+      <div class="center" tapmode onclick="fnOpenRecordWin()">
+        <img src="../image/addAccount1.png" width="40" height="40" >
+      </div>
+      <div class="right" tapmode onclick="fnOpenWorkWin()">
+        <img src="../image/findWork.png" height="40" width="40">
+      </div>
+    </footer>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript">
-    apiready = function(){
-		var ver = api.version;
-		var sType = api.systemType;
-		var sVer = api.systemVersion;
-		var id = api.deviceId;
-		var model = api.deviceModel;
-		var name = api.deviceName;
-		var cType = api.connectionType;
-		var winName = api.winName;
-		var winWidth = api.winWidth;
-		var winHeight = api.winHeight;
-		var frameName = api.frameName || '';
-		var frameWidth = api.frameWidth || '';
-		var frameHeight = api.frameHeight || '';
+  apiready=function(){
+    var header = document.querySelector('#head');
+      $api.fixStatusBar(header);
+  }
+    function fnOpenPersonalWin(){
+      api.openWin({
+          name: 'personal',
+          url: '../html/personal.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+    }
+    function fnOpenMoneyWin(){
+      api.openWin({
+          name: 'money',
+          url: '../html/money.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+    }
+    function fnOpenRecordWin(){
+      api.openWin({
+          name: 'recod',
+          url: '../html/record.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+    }
+    function fnOpenWorkWin(){
+      api.openWin({
+          name: 'work',
+          url: '../html/work.html',
+          pageParam: {
+              name: 'test'
+          }
+      });
+    }
 
-		var str = '<ul>';
-		str += '<li>引擎版本信息: ' + ver + '</li>';
-		str += '<li>系统类型: ' + sType + '</li>';
-		str += '<li>系统版本: ' + sVer + '</li>';
-		str += '<li>设备标识: ' + id + '</li>';
-		str += '<li>设备型号: ' + model + '</li>';
-		str += '<li>设备名称: ' + name + '</li>';
-		str += '<li>网络状态: ' + cType + '</li>';
-		str += '<li>主窗口名字: ' + winName + '</li>';
-		str += '<li>主窗口宽度: ' + winWidth + '</li>';
-		str += '<li>主窗口高度: ' + winHeight + '</li>';
-		str += '<li>子窗口名字: ' + frameName + '</li>';
-		str += '<li>子窗口宽度: ' + frameWidth + '</li>';
-		str += '<li>子窗口高度: ' + frameHeight + '</li>';
-		str += '</ul>';
-
-		$api.byId('sys-info').innerHTML = str;
-
-    };
 </script>
 </html>
