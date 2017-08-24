@@ -77,6 +77,38 @@
       });
 
     };
+    //启动页
+    function welcome(){
+      //欢迎页
+      api.openFrameGroup ({
+          name: 'welcome',
+          background: '#fff',
+          scrollEnabled: false,
+          rect: {
+               x: 0,
+               y: 0,
+               w: 'auto',
+               h: 'auto'
+          },
+          index: 1,
+          frames: [{
+              name: 'frame1',
+              url: 'frame1.html',
+              bgColor: '#fff'
+          },{
+              name: 'frame2',
+              url: 'frame2.html',
+              bgColor: '#fff'
+          }]
+      }, function(ret, err){
+          if( ret ){
+               alert( JSON.stringify( ret ) );
+          }else{
+               alert( JSON.stringify( err ) );
+          }
+      });
+
+    }
 
 </script>
 </html>
